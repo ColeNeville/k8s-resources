@@ -1,0 +1,10 @@
+helmCharts:
+  - name: longhorn
+    repo: https://charts.longhorn.io
+    releaseName: longhorn
+    valuesInline:
+      defaultSettings:
+        defaultDataPath: /store/longhorn
+      services:
+        ui:
+          type: ClusterIP
