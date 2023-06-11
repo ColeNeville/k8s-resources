@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      deployment: postgresql
+  template:
+    metadata:
+      labels:
+        deployment: postgresql
+    spec:
+      volumes:
+        - name: postgresql
+          persistentVolumeClaim:
+            claimName: homeassistant-postgresql
+      containers:
+        - name: postgresql
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: postgresql
+              containerPort: 5432
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/postgreql/data
+              name: postgresql
+              subPath: database
+          env:
+            - name: POSTGRES_USER
+              value: postgresql
+            - name: POSTGRES_DB
+              value: postgresql
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-env
+                  key: POSTGRES_PASSWORD
+                  optional: false
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512M

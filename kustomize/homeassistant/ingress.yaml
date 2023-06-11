@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homeassistant
+spec:
+  rules:
+  - host: homeassistant.alexander.coleslab.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: "" # Updated in the kustomization.yaml
+            port: 
+              name: http

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeassistant
+spec:
+  selector:
+    matchLabels:
+      app: "homeassistant"
+  template:
+    metadata:
+      labels:
+        app: "homeassistant"
+    spec:
+      volumes:
+        - name: homeassistant
+          persistentVolumeClaim:
+            claimName: homeassistant
+      containers:
+        - name: homeassistant
+          image: homeassistant/home-assistant
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8123
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: homeassistant
+              subPath: config
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512M

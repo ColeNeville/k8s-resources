@@ -1,0 +1,17 @@
+resources:
+  - deployment.yaml
+
+vars:
+  # - name: DEPLOYMENT_NAME
+  #   objref:
+  #     kind: Deployment
+  #     name: postgresql
+  # - name: SERVICE_NAME
+  #   objref:
+  #     kind: Service
+  #     name: postgresql
+
+images:
+  - name: postgres
+    newName: postgres
+    newTag: latest
