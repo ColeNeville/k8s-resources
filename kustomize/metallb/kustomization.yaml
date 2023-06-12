@@ -1,0 +1,8 @@
+resources:
+  - ip-address-pool.yaml
+  - l2-advertisement.yaml
+
+helmCharts:
+  - name: metallb
+    repo: https://metallb.github.io/metallb
+    releaseName: metallb
