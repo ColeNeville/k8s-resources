@@ -4,5 +4,5 @@ resources:
 
 helmCharts:
   - name: metallb
-    repo: oci://registry-1.docker.io/bitnamicharts
+    repo: https://charts.bitnami.com/bitnami
     releaseName: metallb
