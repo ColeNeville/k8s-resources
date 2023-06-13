@@ -14,7 +14,7 @@ spec:
       volumes:
         - name: postgresql
           persistentVolumeClaim:
-            claimName: homeassistant-postgresql
+            claimName: postgresql
       containers:
         - name: postgresql
           image: postgres
